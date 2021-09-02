@@ -1,6 +1,7 @@
 name: Duties
 version: 1.5
-description: Saves your survival state and let's you revert back it!
+api-version: 1.17
+description: Saves your survival state and lets you revert back it!
 author: TH3PF
 authors: [TH3PF] 
 website: http://dev.bukkit.org/server-mods/duties/
