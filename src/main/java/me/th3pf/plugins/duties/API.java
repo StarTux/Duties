@@ -27,12 +27,12 @@ public class API
             Duties.Addons.put(plugin, name);
             this.registredPlugin = plugin;
             if (!hidden) {
-                Duties.GetInstance().LogMessage("Registered addon: " + name);
+                Duties.GetInstance().getLogger().info("Registered addon: " + name);
             }
         }
         catch (Exception exception) {
             if (!hidden) {
-                Duties.GetInstance().LogMessage("Addon '" + name + "'" + " failed to register addon " + "'" + name + "'" + "due to an unknown cause.");
+                Duties.GetInstance().getLogger().info("Addon '" + name + "'" + " failed to register addon " + "'" + name + "'" + "due to an unknown cause.");
             }
         }
     }
@@ -48,12 +48,12 @@ public class API
             Duties.Addons.remove(plugin);
             this.registredPlugin = null;
             if (!hidden) {
-                Duties.GetInstance().LogMessage("Unregistered addon: " + name);
+                Duties.GetInstance().getLogger().info("Unregistered addon: " + name);
             }
         }
         catch (Exception exception) {
             if (!hidden) {
-                Duties.GetInstance().LogMessage("Addon '" + name + "'" + " failed to register addon " + "'" + name + "'" + "due to an unknown cause.");
+                Duties.GetInstance().getLogger().info("Addon '" + name + "'" + " failed to register addon " + "'" + name + "'" + "due to an unknown cause.");
             }
         }
     }
@@ -94,10 +94,6 @@ public class API
     
     public VaultAdapter GetVaultAdapter() {
         return Duties.VaultAdapter;
-    }
-    
-    public void LogMessage(final String message) {
-        Duties.GetInstance().LogMessage(message);
     }
     
     public Duties GetInstance() {

@@ -35,7 +35,7 @@ public class DutymodeCommandExecutor implements CommandExecutor
                     }
                     return true;
                 }
-                Duties.GetInstance().LogMessage("This command is only avaible for in-game player.");
+                Duties.GetInstance().getLogger().info("This command is only avaible for in-game player.");
                 return true;
             }
             catch (Exception ex) {
@@ -71,7 +71,7 @@ public class DutymodeCommandExecutor implements CommandExecutor
                 }
                 else {
                     if (!(sender instanceof Player)) {
-                        Duties.GetInstance().LogMessage("This command is only avaible for in-game player.");
+                        Duties.GetInstance().getLogger().info("This command is only avaible for in-game player.");
                         return true;
                     }
                     if (!sender.hasPermission("duties.self.toggle") && (!Duties.Config.GetBoolean("Vault.Permissions") || !Duties.VaultAdapter.permission.has(sender, "duties.self.toggle"))) {
@@ -190,7 +190,7 @@ public class DutymodeCommandExecutor implements CommandExecutor
                         this.TellSender(sender, updates.Disable, actions.DisableDutyMode());
                         return true;
                     }
-                    Duties.GetInstance().LogMessage("This command is only avaible for in-game player.");
+                    Duties.GetInstance().getLogger().info("This command is only avaible for in-game player.");
                     return true;
                 }
             }
@@ -281,7 +281,7 @@ public class DutymodeCommandExecutor implements CommandExecutor
                     return true;
                 }
                 if (!(sender instanceof Player)) {
-                    Duties.GetInstance().LogMessage("This command is only avaible for in-game player.");
+                    Duties.GetInstance().getLogger().info("This command is only avaible for in-game player.");
                     return true;
                 }
                 if (!Duties.Hidden.contains(sender)) {
@@ -323,7 +323,7 @@ public class DutymodeCommandExecutor implements CommandExecutor
                     return true;
                 }
                 if (!(sender instanceof Player)) {
-                    Duties.GetInstance().LogMessage("This command is only avaible for in-game player.");
+                    Duties.GetInstance().getLogger().info("This command is only avaible for in-game player.");
                     return true;
                 }
                 if (Duties.Hidden.contains(sender)) {
@@ -348,13 +348,13 @@ public class DutymodeCommandExecutor implements CommandExecutor
             keySet.addAll(Duties.Memories.keySet());
             for (final UUID playerID : keySet) {
                 if (!Duties.GetInstance().getServer().getPlayer(playerID).isOnline()) {
-                    Duties.GetInstance().LogMessage("Player " + Duties.GetInstance().getServer().getPlayer(playerID).getName() + " is offline and can therefore not be put off duty mode.");
+                    Duties.GetInstance().getLogger().info("Player " + Duties.GetInstance().getServer().getPlayer(playerID).getName() + " is offline and can therefore not be put off duty mode.");
                 }
                 else {
                     if (new ModeSwitcher(Duties.GetInstance().getServer().getPlayer(playerID)).DisableDutyMode()) {
                         continue;
                     }
-                    Duties.GetInstance().LogMessage("Couldn't disable duty mode for " + Duties.GetInstance().getServer().getPlayer(playerID).getName() + ".");
+                    Duties.GetInstance().getLogger().info("Couldn't disable duty mode for " + Duties.GetInstance().getServer().getPlayer(playerID).getName() + ".");
                 }
             }
             this.TellSender(sender, updates.Purged, true);

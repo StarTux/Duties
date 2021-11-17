@@ -98,7 +98,7 @@ public class DutiesCommandExecutor implements CommandExecutor
                 this.TellSender(sender, updates.MissingPermission, false);
                 return true;
             }
-            Duties.GetInstance().LogMessage("The 'KeepStateOffline' setting requires server restart to be changed.");
+            Duties.GetInstance().getLogger().info("The 'KeepStateOffline' setting requires server restart to be changed.");
             if (!new File(String.valueOf(Duties.GetInstance().getDataFolder().getAbsolutePath()) + File.separator + "config.yml").exists()) {
                 final Configuration configuration = new Configuration();
                 configuration.getClass();
@@ -119,7 +119,7 @@ public class DutiesCommandExecutor implements CommandExecutor
             if (sender instanceof Player) {
                 this.TellSender(sender, "Configuration reloaded!");
             }
-            Duties.GetInstance().LogMessage("Configuration reloaded!");
+            Duties.GetInstance().getLogger().info("Configuration reloaded!");
             return true;
         }
         else if (args[0].equalsIgnoreCase("disable")) {
@@ -144,7 +144,7 @@ public class DutiesCommandExecutor implements CommandExecutor
             LinkedHashMap<String, Object> configDefaults = Duties.Config.initializeConfigDefaults();
             for (final String key : configDefaults.keySet()) {
                 if (!Duties.Config.GetHandle().contains(key)) {
-                    Duties.GetInstance().LogMessage("Adding: '" + key + "' to 'config.yml'");
+                    Duties.GetInstance().getLogger().info("Adding: '" + key + "' to 'config.yml'");
                     Duties.Config.GetHandle().set(key, configDefaults.get(key));
                 }
             }
@@ -152,7 +152,7 @@ public class DutiesCommandExecutor implements CommandExecutor
             configDefaults = Duties.Messages.initializeConfigDefaults();
             for (final String key : configDefaults.keySet()) {
                 if (!Duties.Messages.GetHandle().contains(key)) {
-                    Duties.GetInstance().LogMessage("Adding: '" + key + "' to 'messages.yml'");
+                    Duties.GetInstance().getLogger().info("Adding: '" + key + "' to 'messages.yml'");
                     Duties.Messages.GetHandle().set(key, configDefaults.get(key));
                 }
             }
@@ -163,7 +163,7 @@ public class DutiesCommandExecutor implements CommandExecutor
             catch (IOException e) {
                 e.printStackTrace();
             }
-            Duties.GetInstance().LogMessage("Configuration reloaded & updated!");
+            Duties.GetInstance().getLogger().info("Configuration reloaded & updated!");
             return true;
         }
     }

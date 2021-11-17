@@ -106,12 +106,12 @@ public class ModeSwitcher
             if (fail) {
                 return false;
             }
-            Duties.GetInstance().LogMessage(Duties.Messages.GetString("Server.Enabled").replaceAll("%PLAYER_NAME%", this.player.getName()));
+            Duties.GetInstance().getLogger().info(Duties.Messages.GetString("Server.Enabled").replaceAll("%PLAYER_NAME%", this.player.getName()));
             Bukkit.getServer().getPluginManager().callEvent((Event)new DutyModeEnabledEvent(this.player));
             return true;
         }
         catch (Exception exception) {
-            Duties.GetInstance().LogMessage(Duties.Messages.GetString("Server.Fail.Enable").replaceAll("%PLAYER_NAME%", this.player.getName().replaceAll("%REASON%", exception.getMessage())));
+            Duties.GetInstance().getLogger().info(Duties.Messages.GetString("Server.Fail.Enable").replaceAll("%PLAYER_NAME%", this.player.getName().replaceAll("%REASON%", exception.getMessage())));
             return false;
         }
     }
@@ -189,12 +189,12 @@ public class ModeSwitcher
             if (fail) {
                 return false;
             }
-            Duties.GetInstance().LogMessage(Duties.Messages.GetString("Server.Disabled").replaceAll("%PLAYER_NAME%", this.player.getName()));
+            Duties.GetInstance().getLogger().info(Duties.Messages.GetString("Server.Disabled").replaceAll("%PLAYER_NAME%", this.player.getName()));
             Bukkit.getServer().getPluginManager().callEvent((Event)new DutyModeDisabledEvent(this.player));
             return true;
         }
         catch (Exception exception) {
-            Duties.GetInstance().LogMessage(Duties.Messages.GetString("Server.Fail.Disable").replaceAll("%PLAYER_NAME%", this.player.getName().replaceAll("%REASON%", exception.getMessage())));
+            Duties.GetInstance().getLogger().info(Duties.Messages.GetString("Server.Fail.Disable").replaceAll("%PLAYER_NAME%", this.player.getName().replaceAll("%REASON%", exception.getMessage())));
             return false;
         }
     }
@@ -221,7 +221,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while broadcasting duty mode change: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while broadcasting duty mode change: " + exception.getMessage());
                     return false;
                 }
             }
@@ -238,7 +238,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while chatting onEnable messages: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while chatting onEnable messages: " + exception.getMessage());
                     return false;
                 }
             }
@@ -255,7 +255,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while performing onEnable commands: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while performing onEnable commands: " + exception.getMessage());
                     return false;
                 }
             }
@@ -272,7 +272,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while performing onEnable console commands: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while performing onEnable console commands: " + exception.getMessage());
                     return false;
                 }
             }
@@ -347,7 +347,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while reading cleanup tasks: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while reading cleanup tasks: " + exception.getMessage());
                     return false;
                 }
             }
@@ -375,14 +375,14 @@ public class ModeSwitcher
                             }
                         }
                         catch (Exception exception) {
-                            Duties.GetInstance().LogMessage("Failed while enabling temporary groups: Not a valid group: " + group.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
-                            Duties.GetInstance().LogMessage("Error occured: " + exception.getMessage() + ". Ignoring it!");
+                            Duties.GetInstance().getLogger().info("Failed while enabling temporary groups: Not a valid group: " + group.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
+                            Duties.GetInstance().getLogger().info("Error occured: " + exception.getMessage() + ". Ignoring it!");
                         }
                     }
                     return true;
                 }
                 catch (Exception exception2) {
-                    Duties.GetInstance().LogMessage("Failed while enabling temporary groups: " + exception2.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while enabling temporary groups: " + exception2.getMessage());
                     return false;
                 }
             }
@@ -404,7 +404,7 @@ public class ModeSwitcher
                                         Duties.VaultAdapter.permission.playerRemoveTransient(ModeSwitcher.this.player, node.split(": ")[0].replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
                                     }
                                     else {
-                                        Duties.GetInstance().LogMessage("Failed while enabling temporary permissions: '" + node.split(": ")[1] + "' is not a valid value for node: " + node.split(": ")[0] + ". Ignoring it!");
+                                        Duties.GetInstance().getLogger().info("Failed while enabling temporary permissions: '" + node.split(": ")[1] + "' is not a valid value for node: " + node.split(": ")[0] + ". Ignoring it!");
                                     }
                                 }
                                 else {
@@ -419,14 +419,14 @@ public class ModeSwitcher
                             }
                         }
                         catch (Exception exception) {
-                            Duties.GetInstance().LogMessage("Failed while enabling temporary permissions: Not a valid permission node: '" + node.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
-                            Duties.GetInstance().LogMessage("Error occured: " + exception.getMessage() + ". Ignoring it!");
+                            Duties.GetInstance().getLogger().info("Failed while enabling temporary permissions: Not a valid permission node: '" + node.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
+                            Duties.GetInstance().getLogger().info("Error occured: " + exception.getMessage() + ". Ignoring it!");
                         }
                     }
                     return true;
                 }
                 catch (Exception exception2) {
-                    Duties.GetInstance().LogMessage("Failed while enabling temporary permissions: " + exception2.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while enabling temporary permissions: " + exception2.getMessage());
                     return false;
                 }
             }
@@ -437,7 +437,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while importing player data in to memory: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while importing player data in to memory: " + exception.getMessage());
                     return false;
                 }
             }
@@ -463,7 +463,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while broadcasting duty mode change: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while broadcasting duty mode change: " + exception.getMessage());
                     return false;
                 }
             }
@@ -480,7 +480,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while chatting onDisable messages: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while chatting onDisable messages: " + exception.getMessage());
                     return false;
                 }
             }
@@ -491,7 +491,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while removing player data from memory: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while removing player data from memory: " + exception.getMessage());
                     return false;
                 }
             }
@@ -519,14 +519,14 @@ public class ModeSwitcher
                             }
                         }
                         catch (Exception exception) {
-                            Duties.GetInstance().LogMessage("Failed while disabling temporary groups: Not a valid group: " + group.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
-                            Duties.GetInstance().LogMessage("Error occured: " + exception.getMessage() + ". Ignoring it!");
+                            Duties.GetInstance().getLogger().info("Failed while disabling temporary groups: Not a valid group: " + group.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
+                            Duties.GetInstance().getLogger().info("Error occured: " + exception.getMessage() + ". Ignoring it!");
                         }
                     }
                     return true;
                 }
                 catch (Exception exception2) {
-                    Duties.GetInstance().LogMessage("Failed while disabling temporary groups: " + exception2.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while disabling temporary groups: " + exception2.getMessage());
                     return false;
                 }
             }
@@ -546,7 +546,7 @@ public class ModeSwitcher
                                     }
                                     else {
                                         if (!node.split(": ")[1].equalsIgnoreCase("false")) {
-                                            Duties.GetInstance().LogMessage("Failed while disabling temporary permissions: '" + node.split(": ")[1] + "' is not a valid value for node: " + node.split(": ")[0] + ". Ignoring it!");
+                                            Duties.GetInstance().getLogger().info("Failed while disabling temporary permissions: '" + node.split(": ")[1] + "' is not a valid value for node: " + node.split(": ")[0] + ". Ignoring it!");
                                             continue;
                                         }
                                         Duties.VaultAdapter.permission.playerAddTransient(ModeSwitcher.this.player, node.split(": ")[0].replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
@@ -564,15 +564,15 @@ public class ModeSwitcher
                             }
                         }
                         catch (Exception exception) {
-                            Duties.GetInstance().LogMessage("Failed while disabling temporary permissions: Not a valid permission node: '" + node.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
-                            Duties.GetInstance().LogMessage("Error occured: " + exception.getMessage() + ". Ignoring it!");
+                            Duties.GetInstance().getLogger().info("Failed while disabling temporary permissions: Not a valid permission node: '" + node.replaceAll("%PLAYER_NAME%", ModeSwitcher.this.player.getName()));
+                            Duties.GetInstance().getLogger().info("Error occured: " + exception.getMessage() + ". Ignoring it!");
                         }
                         ++count;
                     }
                     return true;
                 }
                 catch (Exception exception2) {
-                    Duties.GetInstance().LogMessage("Failed while removing temporary permissions: " + exception2.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while removing temporary permissions: " + exception2.getMessage());
                     return false;
                 }
             }
@@ -589,7 +589,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while performing onDisable commands: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while performing onDisable commands: " + exception.getMessage());
                     return false;
                 }
             }
@@ -606,7 +606,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while performing onDisable console commands: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while performing onDisable console commands: " + exception.getMessage());
                     return false;
                 }
             }
@@ -648,7 +648,7 @@ public class ModeSwitcher
                     return true;
                 }
                 catch (Exception exception) {
-                    Duties.GetInstance().LogMessage("Failed while reseting player data from memory: " + exception.getMessage());
+                    Duties.GetInstance().getLogger().info("Failed while reseting player data from memory: " + exception.getMessage());
                     return false;
                 }
             }

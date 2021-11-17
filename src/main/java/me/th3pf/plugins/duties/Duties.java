@@ -83,7 +83,7 @@ public class Duties extends JavaPlugin
         else {
             this.pluginManager.registerEvents((Listener)new PlayerQuitListener(), (Plugin)this);
         }
-        this.LogMessage("by " + this.PDFile.getAuthors().get(0) + " was successfully enabled!");
+        this.getLogger().info("by " + this.PDFile.getAuthors().get(0) + " was successfully enabled!");
     }
     
     public void onDisable() {
@@ -96,13 +96,13 @@ public class Duties extends JavaPlugin
                     if (new ModeSwitcher(GetInstance().getServer().getPlayer(playerID)).DisableDutyMode()) {
                         continue;
                     }
-                    this.LogMessage("Couldn't disable duty mode for " + GetInstance().getServer().getPlayer(playerID).getName() + ".");
+                    this.getLogger().info("Couldn't disable duty mode for " + GetInstance().getServer().getPlayer(playerID).getName() + ".");
                 }
                 else {
                     final Player player = Duties.Memories.get(GetInstance().getServer().getPlayer(playerID).getName()).Player;
                     player.loadData();
                     if (!new ModeSwitcher(player).DisableDutyMode()) {
-                        this.LogMessage("Dutymode inactivation for " + GetInstance().getServer().getPlayer(playerID).getName() + " couldn't complete. Sorry for the inconvience.");
+                        this.getLogger().info("Dutymode inactivation for " + GetInstance().getServer().getPlayer(playerID).getName() + " couldn't complete. Sorry for the inconvience.");
                     }
                     player.saveData();
                 }
@@ -111,11 +111,11 @@ public class Duties extends JavaPlugin
         else {
             for (final UUID playerID : keySet) {
                 if (!new ModeSwitcher(GetInstance().getServer().getPlayer(playerID)).DisableDutyMode()) {
-                    this.LogMessage("Dutymode inactivation for " + GetInstance().getServer().getPlayer(playerID).getName() + " couldn't complete. Sorry for the inconvience.");
+                    this.getLogger().info("Dutymode inactivation for " + GetInstance().getServer().getPlayer(playerID).getName() + " couldn't complete. Sorry for the inconvience.");
                 }
             }
         }
-        this.LogMessage("by " + this.PDFile.getAuthors().get(0) + " was successfully disabled!");
+        this.getLogger().info("by " + this.PDFile.getAuthors().get(0) + " was successfully disabled!");
     }
     
     public static Duties GetInstance() {
@@ -124,9 +124,5 @@ public class Duties extends JavaPlugin
     
     public static API GetAPI() {
         return new API();
-    }
-    
-    public void LogMessage(final String Message) {
-        System.out.println("[" + this.PDFile.getName() + " " + this.PDFile.getVersion() + "] " + Message);
     }
 }

@@ -319,7 +319,7 @@ public class Configuration
             }
             try {
                 if (this.config.getString(key).equals("")) {
-                    Duties.GetInstance().LogMessage("Couldn't find the '" + key + "' message. Removing the 'messages.yml' file will fix this.");
+                    Duties.GetInstance().getLogger().info("Couldn't find the '" + key + "' message. Removing the 'messages.yml' file will fix this.");
                 }
                 return this.config.getString(key).replaceAll("&", String.valueOf('§'));
             }

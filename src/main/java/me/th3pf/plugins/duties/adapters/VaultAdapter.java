@@ -23,17 +23,17 @@ public class VaultAdapter
         if (Duties.Config.GetBoolean("Vault.Permissions") && !this.setupPermissions()) {
             Duties.Config.SetBoolean("Vault.Permissions", false);
             Duties.GetInstance().saveConfig();
-            Duties.GetInstance().LogMessage("Vault didn't hook any permissions plugin, disabled the setting!");
+            Duties.GetInstance().getLogger().info("Vault didn't hook any permissions plugin, disabled the setting!");
         }
         if (Duties.Config.GetBoolean("Vault.NameFormatting") && !this.setupChat()) {
             Duties.Config.SetBoolean("Vault.NameFormatting", false);
             Duties.GetInstance().saveConfig();
-            Duties.GetInstance().LogMessage("Vault didn't hook any chat plugin, disabled the setting!");
+            Duties.GetInstance().getLogger().info("Vault didn't hook any chat plugin, disabled the setting!");
         }
         if (Duties.Config.GetBoolean("Vault.Economy") && !this.setupEconomy()) {
             Duties.Config.SetBoolean("Vault.Economy", false);
             Duties.GetInstance().saveConfig();
-            Duties.GetInstance().LogMessage("Vault didn't hook any economy plugin, disabled the setting!");
+            Duties.GetInstance().getLogger().info("Vault didn't hook any economy plugin, disabled the setting!");
         }
     }
     
@@ -41,7 +41,7 @@ public class VaultAdapter
         final RegisteredServiceProvider<Permission> permissionProvider = (RegisteredServiceProvider<Permission>)Duties.GetInstance().getServer().getServicesManager().getRegistration((Class)Permission.class);
         if (permissionProvider != null) {
             this.permission = (Permission)permissionProvider.getProvider();
-            Duties.GetInstance().LogMessage("Vault permissions hooked.");
+            Duties.GetInstance().getLogger().info("Vault permissions hooked.");
         }
         if (this.permission != null) {
             return true;
@@ -53,7 +53,7 @@ public class VaultAdapter
         final RegisteredServiceProvider<Chat> chatProvider = (RegisteredServiceProvider<Chat>)Duties.GetInstance().getServer().getServicesManager().getRegistration((Class)Chat.class);
         if (chatProvider != null) {
             this.chat = (Chat)chatProvider.getProvider();
-            Duties.GetInstance().LogMessage("Vault chat hooked.");
+            Duties.GetInstance().getLogger().info("Vault chat hooked.");
         }
         if (this.chat != null) {
             return true;
@@ -65,7 +65,7 @@ public class VaultAdapter
         final RegisteredServiceProvider<Economy> economyProvider = (RegisteredServiceProvider<Economy>)Duties.GetInstance().getServer().getServicesManager().getRegistration((Class)Economy.class);
         if (economyProvider != null) {
             this.economy = (Economy)economyProvider.getProvider();
-            Duties.GetInstance().LogMessage("Vault economy hooked.");
+            Duties.GetInstance().getLogger().info("Vault economy hooked.");
         }
         if (this.economy != null) {
             return true;
